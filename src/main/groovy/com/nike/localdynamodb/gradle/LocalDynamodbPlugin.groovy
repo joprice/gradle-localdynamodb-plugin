@@ -35,6 +35,10 @@ class LocalDynamodbPlugin implements Plugin<Project> {
             }
         }
 
+        project.configurations {
+            sqllite4javaCompile
+        }
+
         project.dependencies {
             sqllite4javaCompile group: 'com.almworks.sqlite4java', name: 'libsqlite4java-osx', version: '1.0.392'
             sqllite4javaCompile group: 'com.almworks.sqlite4java', name: 'libsqlite4java-linux-amd64', version: '1.0.392'

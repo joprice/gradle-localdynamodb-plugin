@@ -1,11 +1,11 @@
 plugins {
     id "com.jfrog.bintray" version "1.7.3"
-    id "pl.droidsonroids.jacoco.testkit" version "1.0.3"
+    id "pl.droidsonroids.jacoco.testkit" version "1.0.9"
     id 'com.github.kt3k.coveralls' version '2.8.1'
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 apply plugin: 'groovy'
 apply plugin: 'java-gradle-plugin'
 
@@ -16,21 +16,23 @@ apply from: file('gradle/release.gradle')
 
 repositories {
   jcenter()
-  maven { url "http://dynamodb-local.s3-website-us-west-2.amazonaws.com/release" }
+  //maven { url "https://dynamodb-local.s3-website-us-west-2.amazonaws.com/release" }
+  maven { url "https://s3-us-west-2.amazonaws.com/dynamodb-local/release" }
 }
 
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile('com.amazonaws:DynamoDBLocal:1.10.5.1') {
+    compile('com.amazonaws:DynamoDBLocal:1.10.20') {
         exclude group: "org.slf4j", module: "slf4j-log4j12"
     }
     compile "org.slf4j:jcl-over-slf4j:1.7.5"
     compile "org.slf4j:slf4j-simple:1.7.5"
-    testCompile("org.spockframework:spock-core:1.1-groovy-2.4") {
+    testCompileOnly("org.spockframework:spock-core:2.0-groovy-3.0") {
         exclude module: 'groovy-all'
     }
-    testCompile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.220'
+    testCompileOnly group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.220'
+    testImplementation 'junit:junit:4.13'
 }
 
 tasks.withType(JavaCompile) {
