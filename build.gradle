@@ -21,17 +21,17 @@ repositories {
 }
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile('com.amazonaws:DynamoDBLocal:1.10.20') {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation('com.amazonaws:DynamoDBLocal:1.10.20') {
         exclude group: "org.slf4j", module: "slf4j-log4j12"
     }
-    compile "org.slf4j:jcl-over-slf4j:1.7.5"
-    compile "org.slf4j:slf4j-simple:1.7.5"
-    testCompileOnly("org.spockframework:spock-core:2.0-groovy-3.0") {
+    implementation "org.slf4j:jcl-over-slf4j:1.7.5"
+    implementation "org.slf4j:slf4j-simple:1.7.5"
+    testImplementation("org.spockframework:spock-core:2.0-groovy-3.0") {
         exclude module: 'groovy-all'
     }
-    testCompileOnly group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.220'
+    testImplementation group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.220'
     testImplementation 'junit:junit:4.13'
 }
 
